@@ -13,11 +13,11 @@
           <label>Senha:</label>
           <input type="password" class="campo" v-model="usuario.senha" />
           <br />
-          <input type="submit" class="btn-submit" value="Salvar" />
+          <input type="button" class="btn-submit" value="Salvar" @click="salvar()" />
         </fieldset>
       </form>
     </div>
-    <lista-usuarios/>
+    <lista-usuarios :usuarios = "usuarios"/>
   </div>
 </template>
 
@@ -27,13 +27,23 @@ export default {
   components: {ListaUsuarios},  
   data() {
     return {
+        cont: 0,
         usuarios: [],
         usuario: {
+            id: 0,
             nome: "",
             email: "",
             senha:""
         }
+
     };
+  },
+  methods: {
+      salvar(user) {
+          user = this.usuario
+          user.id += 1
+          this.usuarios.push(user)
+      }
   }
 };
 </script>
