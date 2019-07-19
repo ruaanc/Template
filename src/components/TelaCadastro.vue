@@ -6,7 +6,7 @@
                 <label>Nome: </label><input type="text" class="campo"><br>
                 <label>Email: </label><input type="email" class="campo"><br>
                 <label>Senha: </label><input type="password" class="campo"><br>
-                <input type="button" class="btn-submit" value="Salvar">
+                <input type="submit" class="btn-submit" value="Salvar">
             </fieldset>
         </form>
     </div>
@@ -33,7 +33,7 @@ export default {
 .cadastro fieldset {
     border: double;
     float: left;
-    padding: 5px 10px 0px;
+    padding: 5px 15px 0px;
 }
 
 .cadastro label {
@@ -52,9 +52,8 @@ export default {
     margin-bottom: 1em;
     color: #FFF;
     padding: 0.2em 0.6em; 
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-
+    cursor: pointer;
 }
 
 .cadastro input {
@@ -63,7 +62,7 @@ export default {
 }
 
 .cadastro .campo {
-    padding-right: 200px;
+    padding-right: 400px;
 }
 
 .cadastro legend {
@@ -71,6 +70,7 @@ export default {
     font-size: 2em;
     font-style: normal;
 }
+
 
 
     

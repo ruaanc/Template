@@ -1,7 +1,9 @@
 <template>
-  <div id="app">
-    <tela-cadastro/>
-  </div>
+  <body>
+    <div id="app">
+      <tela-cadastro/>
+    </div>
+  </body>
 </template>
 
 <script>
@@ -16,4 +18,7 @@ export default {
 </script>
 
 <style>
+body {
+  background-color: #a4eef3
+}
 </style>
