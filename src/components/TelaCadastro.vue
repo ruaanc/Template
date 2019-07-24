@@ -1,49 +1,37 @@
 <template>
   <div id="temp">
     <div class="cadastro">
-      <form action>
+      <form @submit.prevent="salvar">
         <fieldset>
-          <legend>Cadastro</legend>
+          <h1>Cadastro</h1>
           <label>Nome:</label>
-          <input type="text" class="campo" v-model="usuario.nome" />
+          <input type="text" class="campo" v-model="usuario.name" />
           <br />
           <label>Email:</label>
-          <input type="email" class="campo" v-model="usuario.email" />
+          <input type="email" class="campo" v-model="usuario.emailAddress" />
           <br />
           <label>Senha:</label>
-          <input type="password" class="campo" v-model="usuario.senha" />
+          <input type="password" class="campo" v-model="usuario.password" />
           <br />
-          <input type="button" class="btn-submit" value="Salvar" @click="salvar()" />
+          <input type="submit" class="btn-submit" value="Salvar"/>
         </fieldset>
       </form>
     </div>
-    <lista-usuarios :usuarios = "usuarios"/>
   </div>
 </template>
 
 <script>
-import ListaUsuarios from './ListaUsuarios.vue'
+
 export default {
-  components: {ListaUsuarios},  
   data() {
     return {
         cont: 0,
-        usuarios: [],
         usuario: {
-            id: 0,
-            nome: "",
-            email: "",
-            senha:""
+            name: "",
+            emailAddress: "",
+            password:""
         }
-
     };
-  },
-  methods: {
-      salvar(user) {
-          user = this.usuario
-          user.id += 1
-          this.usuarios.push(user)
-      }
   }
 };
 </script>
@@ -52,7 +40,7 @@ export default {
 .cadastro {
   position: relative;
   margin: auto;
-  padding: 150px 0;
+  padding: 150px 0 0 0;
   font-family: sans-serif;
   font-size: 1em;
   display: table;
@@ -64,6 +52,8 @@ export default {
   border: double;
   float: left;
   padding: 5px 15px 0px;
+  background-color: white;
+  box-shadow: 2px 2px 2px rgba(31, 30, 30, 0.8);
 }
 
 .cadastro label {
@@ -84,6 +74,8 @@ export default {
   padding: 0.2em 0.6em;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
   cursor: pointer;
+  position: relative;
+  left: 89%;
 }
 
 .cadastro input {
@@ -99,5 +91,10 @@ export default {
   font-family: Arial, sans-serif;
   font-size: 2em;
   font-style: normal;
+}
+
+.cadastro h1 {
+  color: #666;
+  padding: 0;
 }
 </style>
