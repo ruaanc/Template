@@ -1,19 +1,21 @@
 <template>
   <div id="temp">
     <div class="cadastro">
-      <form @submit.prevent="salvar">
+      <form @submit.prevent="save">
         <fieldset>
           <h1>Cadastro</h1>
           <label>Nome:</label>
-          <input type="text" class="campo" v-model="usuario.name" />
+          <input type="text" class="campo" v-model="usuario.username" />
           <br />
           <label>Email:</label>
-          <input type="email" class="campo" v-model="usuario.emailAddress" />
+          <input type="text" class="campo" v-model="usuario.email" />
           <br />
           <label>Senha:</label>
           <input type="password" class="campo" v-model="usuario.password" />
           <br />
-          <input type="submit" class="btn-submit" value="Salvar"/>
+          <label>Confirma a senha:</label>
+          <input type="password" class="campo" v-model="usuario.password_confirmation">
+          <input type="submit" class="btn-submit" value="Salvar">
         </fieldset>
       </form>
     </div>
@@ -21,17 +23,31 @@
 </template>
 
 <script>
-
+import User from '../services/usr'
 export default {
   data() {
     return {
         cont: 0,
         usuario: {
-            name: "",
-            emailAddress: "",
-            password:""
+          username: '',
+          email: '',
+          password: '',
+          password_confirmation: ''
         }
     };
+  },
+  props: {
+    listar: Function
+  },
+  methods: {
+    save(){
+      User.save(this.usuario).then(res => {
+        res.data = this.usuario
+        this.usuario = {}
+        this.listar()
+        alert('Salvo com Sucesso !!!')
+      })
+    },
   }
 };
 </script>
@@ -54,6 +70,8 @@ export default {
   padding: 5px 15px 0px;
   background-color: white;
   box-shadow: 2px 2px 2px rgba(31, 30, 30, 0.8);
+  position: relative;
+  display: flex;
 }
 
 .cadastro label {
