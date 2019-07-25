@@ -1,12 +1,11 @@
 <template>
   <body>
     <div id="app">
-      <tela-cadastro/>
+      <tela-cadastro :listar="listar"/>
       <lista-usuarios :usuarios="usuarios"/>
-      <form @submit.prevent="save">
+      <form>
         <button>Enviar</button>
       </form>
-      
     </div>
   </body>
 </template>
@@ -24,27 +23,17 @@ export default {
   },
   data() {
     return{
-      usuarios: [],
-      usuario: {
-        username: 'Raíssa',
-        email: 'ruaissa.tec@gmail.com',
-        password: '12345',
-        password_confirmation: '12345'
-      }
+      usuarios: []
     } 
   },
   mounted() {
-      User.listar().then(response => {
-        this.usuarios = response.data
-      })
+    this.listar()
   },
-
   methods: {
-    save(){
-      User.save(this.usuario).then(res => {
-        res.data = this.usuario
-        alert('Salvo co sucesso')
-      })
+    listar(){
+        User.listar().then(response => {
+          this.usuarios = response.data
+        })
     }
   }
 
