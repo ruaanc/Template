@@ -13,15 +13,26 @@
                     <td>{{ usuario.id }}</td>
                     <td>{{ usuario.username }}</td>
                     <td>{{ usuario.email }}</td>
+                    <button @click="alterarUser(usuario)">Editar</button>
                 </tr>
+                
             </tbody>
         </table>
     </div>
 </template>
 
 <script>
+import barramento from '../barramento'
 export default {
-    props: {usuarios: Array}
+    props: {
+        usuarios: Array,
+        usuario: {}
+    },
+    methods: {
+        alterarUser(usuario) {
+            barramento.alterarUser(usuario)
+        }
+    }
 
 }
 </script>
