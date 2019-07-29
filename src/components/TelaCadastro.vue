@@ -25,30 +25,35 @@
 <script>
 import User from '../services/usr'
 export default {
-  data() {
-    return {
-        cont: 0,
-        usuario: {
-          username: '',
-          email: '',
-          password: '',
-          password_confirmation: ''
-        }
-    };
-  },
   props: {
-    listar: Function
+    listar: Function,
+    limpar: Function,
+    usuario: {}
   },
   methods: {
     save(){
-      User.save(this.usuario).then(res => {
-        res.data = this.usuario
-        this.usuario = {}
-        this.listar()
-        alert('Salvo com Sucesso !!!')
-      })
-    },
-  }
+      if(!this.usuario.id) {
+        User.save(this.usuario).then(res => {
+          res.data = this.usuario
+          this.limpar()
+          this.usuario = null
+          alert('Salvo com Sucesso !!!')
+          this.listar()
+        }).catch(e => {
+            alert(e)
+        })
+      }else {
+        User.update(this.usuario).then(res => {
+          res.data = this.usuario
+          this.limpar()
+          alert('Atualizado com Sucesso !!!')
+          this.listar()
+        }).catch(e => {
+            alert(e)
+        })
+      }
+    }
+  },
 };
 </script>
 
