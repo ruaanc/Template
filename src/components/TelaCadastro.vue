@@ -61,7 +61,7 @@ export default {
 .cadastro {
   position: relative;
   margin: auto;
-  padding: 150px 0 0 0;
+  padding: 110px 0 0 0;
   font-family: sans-serif;
   font-size: 1em;
   display: table;
@@ -89,7 +89,7 @@ export default {
 
 .btn-submit {
   margin-top: 10px;
-  font-size: 1.2em;
+  font-size: 1em;
   background: #f90;
   border: 0;
   margin-bottom: 1em;
@@ -98,7 +98,7 @@ export default {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
   cursor: pointer;
   position: relative;
-  left: 89%;
+  left: 91%;
 }
 
 .cadastro input {
@@ -112,12 +112,16 @@ export default {
 
 .cadastro legend {
   font-family: Arial, sans-serif;
-  font-size: 2em;
   font-style: normal;
 }
 
 .cadastro h1 {
   color: #666;
   padding: 0;
+  font-size: 1.5em;
+}
+
+.cadastro label {
+  font-size: 1em;
 }
 </style>
