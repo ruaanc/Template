@@ -2,18 +2,20 @@
   <body>
     <div id="app">
       <Login/>
-      <tela-cadastro :listar="listar" :usuario="usuario" :limpar="limpar"/>
-      <lista-usuarios :usuarios="usuarios" :usuario="usuario"/>
+      <tela-cadastro/>
+      <lista-usuarios/>
+      <Editar/>
     </div>
   </body>
 </template>
 
 <script>
-import TelaCadastro from './components/TelaCadastro.vue'
+
 import ListaUsuarios from './components/ListaUsuarios.vue'
+import TelaCadastro from './components/TelaCadastro.vue'
 import Login from './components/Login.vue'
+import Editar from './components/EditarUsuario.vue'
 import User from './services/usr'
-import barramento from './barramento'
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 Vue.use(BootstrapVue)
@@ -22,40 +24,30 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 export default {
   name: 'app',
   components: {
-    TelaCadastro,
     ListaUsuarios,
-    Login  
-  },
-  data() {
-    return{
-      usuarios: [],
-      usuario: {
-          id: '',
-          username: '',
-          email: '',
-          password: '',
-          password_confirmation: ''
-      }
-    } 
+    TelaCadastro,
+    Login,
+    Editar
   },
   mounted() {
     this.listar()
   },
   methods: {
-    listar(){
+   async listar(){
         User.listar().then(response => {
-          this.usuarios = response.data
+          const usuarios = response.data
+          for (let index = 0; index < usuarios.length; index++) {
+            this.$store.state.usrs.push(usuarios[index])
+          }
         })
-    },
-    limpar(){
-      this.usuario = {}
     }
   },
-  created() {
-    barramento.quandoUserAlterar(user => {
-      this.usuario = user
-    })
+  computed: {
+    token() {
+      return this.$store.state.token
+    }
   }
+
 }
 </script>
 

@@ -22,18 +22,12 @@
 </template>
 
 <script>
-import barramento from '../barramento'
 export default {
-    props: {
-        usuarios: Array,
-        usuario: {}
-    },
-    methods: {
-        alterarUser(usuario) {
-            barramento.alterarUser(usuario)
+    computed: {
+        usuarios() {
+            return this.$store.state.usrs
         }
     }
-
 }
 </script>
 

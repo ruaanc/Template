@@ -14,8 +14,8 @@
           <input type="password" class="campo" v-model="usuario.password" />
           <br />
           <label>Confirma a senha:</label>
-          <input type="password" class="campo" v-model="usuario.password_confirmation">
-          <input type="submit" class="btn-submit" value="Salvar">
+          <input type="password" class="campo" v-model="usuario.password_confirmation" />
+          <input type="submit" class="btn-submit" value="Salvar" />
         </fieldset>
       </form>
     </div>
@@ -23,37 +23,31 @@
 </template>
 
 <script>
-import User from '../services/usr'
+import User from "../services/usr";
 export default {
-  props: {
-    listar: Function,
-    limpar: Function,
-    usuario: {}
-  },
-  methods: {
-    save(){
-      if(!this.usuario.id) {
-        User.save(this.usuario).then(res => {
-          res.data = this.usuario
-          this.limpar()
-          this.usuario = null
-          alert('Salvo com Sucesso !!!')
-          this.listar()
-        }).catch(e => {
-            alert(e)
-        })
-      }else {
-        User.update(this.usuario).then(res => {
-          res.data = this.usuario
-          this.limpar()
-          alert('Atualizado com Sucesso !!!')
-          this.listar()
-        }).catch(e => {
-            alert(e)
-        })
+  data() {
+    return {
+      usuario: {
+        username: '',
+        email: '',
+        password: '',
+        password_confirmation: ''
       }
     }
   },
+  methods: {
+    save() {
+      User.save(this.usuario)
+        .then(res => {
+          res.data = this.usuario;
+          this.usuario = {};
+          alert("Salvo com Sucesso !!!");
+        })
+        .catch(e => {
+          alert(e);
+        });
+    }
+  }
 };
 </script>
 

@@ -29,20 +29,16 @@ export default {
         email: "",
         password: ""
       },
-      token: {}
+      token: ''
     };
   },
   methods: {
-    login() {
-      User.login(this.userLogin).then(res => {
-        res.data = this.userLogin;
-        this.userLogin = {}
-        this.token = JSON.parse(res.request.response);
-        alert("Login realizado com sucesso");
-      }).catch(e => {
-        alert(e.request.response)
-      })
-    }
+    async login() {
+      const user = await User.login(this.userLogin);
+      const { token } = user.data
+      this.$store.state.tk = token
+      console.log(this.$store.state.tk)
+    },
   }
 };
 </script>
@@ -54,8 +50,12 @@ export default {
 }
 
 .forgot {
-  margin-left: 43%;
+  margin-left: 45%;
   color: rgb(83, 82, 82);
+}
+
+.login a {
+  font-size: 0.8em;
 }
 
 
