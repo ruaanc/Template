@@ -11,7 +11,7 @@
             <b-form-input size="sm" class="mr-sm-2" placeholder="Email" type="email" v-model="userLogin.email"></b-form-input>
             <label>Senha: </label>
             <b-form-input size="sm" class="mr-sm-2" placeholder="Senha" type="password" v-model="userLogin.password"></b-form-input>
-            <b-button size="sm" class="my-2 my-sm-0" type="submit">Entrar</b-button>
+            <router-link :to="go"><b-button size="sm" class="my-2 my-sm-0" type="submit">Entrar</b-button></router-link>
             <a class="forgot" href="#">Esqueceu a senha ?</a>
           </b-nav-form>
         </b-navbar-nav>
@@ -29,7 +29,8 @@ export default {
         email: "",
         password: ""
       },
-      token: ''
+      token: '',
+      go:'/editar'
     };
   },
   methods: {
@@ -37,7 +38,6 @@ export default {
       const user = await User.login(this.userLogin);
       const { token } = user.data
       this.$store.state.tk = token
-      console.log(this.$store.state.tk)
     },
   }
 };
