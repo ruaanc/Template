@@ -1,6 +1,5 @@
 <template>
     <div id="principal">
-        <Login/>
         <tela-cadastro/>
         <lista-usuarios/>
     </div>
@@ -9,12 +8,10 @@
 <script>
 import ListaUsuarios from '../components/ListaUsuarios.vue'
 import TelaCadastro from '../components/TelaCadastro.vue'
-import Login from '../components/Login.vue'
 export default {
     components: {
         ListaUsuarios,
-        TelaCadastro,
-        Login
+        TelaCadastro
     }
 }
 </script>
