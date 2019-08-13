@@ -1,25 +1,74 @@
 <template>
-  <div id="temp">
-    <div class="cadastro">
-      <form @submit.prevent="save">
-        <fieldset>
-          <h1>Cadastro</h1>
-          <label>Nome:</label>
-          <input type="text" class="campo" v-model="usuario.username" />
-          <br />
-          <label>Email:</label>
-          <input type="text" class="campo" v-model="usuario.email" />
-          <br />
-          <label>Senha:</label>
-          <input type="password" class="campo" v-model="usuario.password" />
-          <br />
-          <label>Confirma a senha:</label>
-          <input type="password" class="campo" v-model="usuario.password_confirmation" />
-          <input type="submit" class="btn-submit" value="Salvar" />
-        </fieldset>
-      </form>
+<body>
+  <div id="register">
+    <div class="container">
+      <div class="card bg-light">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+          <h4 class="card-title mt-3 text-center">Create Account</h4>
+          <p class="text-center">Get started with your free account</p>
+          <p>
+            <a href class="btn btn-block btn-twitter">
+              <i class="fab fa-twitter"></i> Login via Twitter
+            </a>
+            <a href class="btn btn-block btn-facebook">
+              <i class="fab fa-facebook-f"></i> Login via facebook
+            </a>
+          </p>
+          <p class="divider-text">
+            <span class="bg-light">OR</span>
+          </p>
+          <form @submit.prevent="save">
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-user"></i>
+                </span>
+              </div>
+              <input name class="form-control" placeholder="Full name" type="text" v-model="usuario.username"/>
+            </div>
+            <!-- form-group// -->
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-envelope"></i>
+                </span>
+              </div>
+              <input name class="form-control" placeholder="Email address" type="email" v-model="usuario.email"/>
+            </div>
+            <!-- form-group end.// -->
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-lock"></i>
+                </span>
+              </div>
+              <input class="form-control" placeholder="Create password" type="password" v-model="usuario.password" />
+            </div>
+            <!-- form-group// -->
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-lock"></i>
+                </span>
+              </div>
+              <input class="form-control" placeholder="Repeat password" type="password" v-model="usuario.password_confirmation"/>
+            </div>
+            <!-- form-group// -->
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+            </div>
+            <!-- form-group// -->
+            <p class="text-center">
+              Have an account?
+              <a href>Log In</a>
+            </p>
+          </form>
+        </article>
+      </div>
+      <!-- card.// -->
     </div>
   </div>
+</body>
 </template>
 
 <script>
@@ -28,12 +77,12 @@ export default {
   data() {
     return {
       usuario: {
-        username: '',
-        email: '',
-        password: '',
-        password_confirmation: ''
+        username: "",
+        email: "",
+        password: "",
+        password_confirmation: ""
       }
-    }
+    };
   },
   methods: {
     save() {
@@ -52,70 +101,34 @@ export default {
 </script>
 
 <style scoped>
-.cadastro {
-  position: relative;
-  margin: auto;
-  padding: 110px 0 0 0;
-  font-family: sans-serif;
-  font-size: 1em;
-  display: table;
-  clear: both;
-  margin-bottom: 1em;
+.divider-text {
+    position: relative;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.divider-text span {
+    padding: 7px;
+    font-size: 12px;
+    position: relative;   
+    z-index: 2;
+}
+.divider-text:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    top: 55%;
+    left: 0;
+    z-index: 1;
 }
 
-.cadastro fieldset {
-  border: double;
-  float: left;
-  padding: 5px 15px 0px;
-  background-color: white;
-  box-shadow: 2px 2px 2px rgba(31, 30, 30, 0.8);
-  position: relative;
-  display: flex;
+.btn-facebook {
+    background-color: #405D9D;
+    color: #fff;
 }
-
-.cadastro label {
-  margin-bottom: 0.2em;
-  color: #666;
-  display: block;
-  padding-top: 10px;
-  font-size: 2em;
-}
-
-.btn-submit {
-  margin-top: 10px;
-  font-size: 1em;
-  background: #f90;
-  border: 0;
-  margin-bottom: 1em;
-  color: #fff;
-  padding: 0.2em 0.6em;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-  position: relative;
-  left: 91%;
-}
-
-.cadastro input {
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-  padding: 5px;
-}
-
-.cadastro .campo {
-  padding-right: 400px;
-}
-
-.cadastro legend {
-  font-family: Arial, sans-serif;
-  font-style: normal;
-}
-
-.cadastro h1 {
-  color: #666;
-  padding: 0;
-  font-size: 1.5em;
-}
-
-.cadastro label {
-  font-size: 1em;
+.btn-twitter {
+    background-color: #42AEEC;
+    color: #fff;
 }
 </style>
